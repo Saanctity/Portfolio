@@ -1,41 +1,697 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sagar Shukla | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagar Shukla | AI/ML Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0e27;
+            --bg-card: #1a1f3a;
+            --text-primary: #e0e6ed;
+            --text-secondary: #a0aec0;
+            --accent: #00d4aa;
+            --accent-secondary: #667eea;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--bg-dark);
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 212, 170, 0.15) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-50px, -50px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            backdrop-filter: blur(10px);
+            background: rgba(10, 14, 39, 0.8);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 5%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding-top: 8rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #00d4aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero .mission {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            max-width: 800px;
+            margin: 2rem auto;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 3rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--bg-dark);
+        }
+
+        /* About Section */
+        .about {
+            background: rgba(26, 31, 58, 0.5);
+            border-radius: 20px;
+            padding: 4rem;
+            margin: 4rem 0;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .about-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Projects Section */
+        .projects h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 170, 0.2);
+            border-color: var(--accent);
+        }
+
+        .project-header {
+            background: var(--gradient);
+            padding: 1.5rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-body p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tag {
+            background: rgba(102, 126, 234, 0.2);
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .project-links a:hover {
+            color: var(--accent-secondary);
+        }
+
+        /* Skills Section */
+        .skills {
+            background: rgba(26, 31, 58, 0.5);
+            border-radius: 20px;
+            padding: 4rem;
+        }
+
+        .skills h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            color: var(--text-secondary);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--bg-card);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Sagar Shukla</h1>
-    <p>Full-stack Developer | Climate Tech Enthusiast | OpenAI Academy Member</p>
-  </header>
+    <div class="animated-bg"></div>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      I'm a B.Tech Computer Science student passionate about using technology for climate action. I build web apps, learn AI, and actively participate in communities like OpenAI Academy and ClimateAction.tech.
-    </p>
-  </section>
+    <nav>
+        <div class="container">
+            <div class="logo">SAGAR SHUKLA</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li><strong>Taste of Well-Being</strong> – A React app inspired by Sadhguru's book, sharing recipes & wellness tips.</li>
-      <li><strong>Mindful Quote Generator</strong> – Inspirational quotes from spiritual minds with voice support & favorite feature.</li>
-    </ul>
-  </section>
+    <section class="hero">
+        <h1>AI/ML Engineer for Earth</h1>
+        <p class="tagline">Building Intelligent Systems | Climate Tech | Conscious Innovation</p>
+        <p class="mission">
+            I leverage artificial intelligence and machine learning to create solutions that heal our planet. 
+            From predictive climate models to renewable energy optimization, I'm committed to using technology 
+            as a force for environmental restoration and conscious innovation. Every line of code is written 
+            with full energy and awareness of its impact on our world.
+        </p>
+        <div class="cta-buttons">
+            <a href="#projects" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-secondary">Let's Connect</a>
+        </div>
+    </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:sagar1.7shukla@gmail.com">sagar1.7shukla@gmail.com</a></p>
-    <p>GitHub: <a href="https://github.com/Saanctity" target="_blank">github.com/Saanctity</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/sagar-shukla-3342aa34a" target="_blank">linkedin.com/in/sagar-shukla</a></p>
-  </section>
+    <section id="about" class="about">
+        <h2>Who I Am</h2>
+        <p style="text-align: center; font-size: 1.1rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto;">
+            AI/ML Engineer | WorldQuant University | B.Tech CSE at RGPV Bhopal
+        </p>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>🤖 AI/ML Engineering</h3>
+                <p>Specialized in building production-ready ML systems, from data preprocessing to model deployment. 
+                Experienced with deep learning, computer vision, NLP, and GenAI applications.</p>
+            </div>
+            <div class="about-card">
+                <h3>🌍 Climate Tech Focus</h3>
+                <p>Dedicated to applying AI for environmental solutions - energy optimization, climate modeling, 
+                sustainability analytics. Technology should serve the planet, not exploit it.</p>
+            </div>
+            <div class="about-card">
+                <h3>⚛️ Quantum Computing</h3>
+                <p>Exploring the intersection of quantum computing and AI. Researching quantum algorithms 
+                for complex climate simulations and optimization problems.</p>
+            </div>
+            <div class="about-card">
+                <h3>🧘 Conscious Innovation</h3>
+                <p>Inspired by mindfulness and awareness in technology. Building solutions that consider 
+                long-term impact, sustainability, and human well-being alongside technical excellence.</p>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    <p>© 2025 Sagar Shukla | Built with HTML & CSS</p>
-  </footer>
+    <section id="projects" class="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">Friday AI Assistant</div>
+                <div class="project-body">
+                    <p>Full-stack AI assistant with web and desktop variants. Web version hosted on Vercel with Render backend, 
+                    desktop version runs locally with advanced NLP capabilities.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">React</span>
+                        <span class="tag">GenAI</span>
+                        <span class="tag">NLP</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Saanctity" target="_blank">GitHub →</a>
+                        <a href="#" target="_blank">Live Demo →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">Climate Sentiment Analysis</div>
+                <div class="project-body">
+                    <p>Advanced sentiment analysis on Paris Climate Agreement using VADER, LSTM, and CNN models. 
+                    Visualized public opinion polarity and engagement patterns.</p>
+                    <div class="project-tags">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">NLP</span>
+                        <span class="tag">Climate Data</span>
+                        <span class="tag">CNN</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Saanctity" target="_blank">GitHub →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">WorldQuant Applied Data Science</div>
+                <div class="project-body">
+                    <p>Comprehensive ML portfolio: Housing Price Prediction (Mexico/Buenos Aires), Earthquake Damage 
+                    Prediction (Nepal), Air Quality Analysis (Nairobi). Real-world datasets with production-grade models.</p>
+                    <div class="project-tags">
+                        <span class="tag">Regression</span>
+                        <span class="tag">Predictive Modeling</span>
+                        <span class="tag">Data Analysis</span>
+                        <span class="tag">Pandas</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Saanctity" target="_blank">GitHub →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">10 ML Solutions Portfolio</div>
+                <div class="project-body">
+                    <p>Diverse ML implementations: ASL Detection, Medical Diagnostics (Liver Cirrhosis, Lung Cancer, 
+                    Thyroid Cancer), Financial Fraud Detection, and more. Unified Mentor internship work.</p>
+                    <div class="project-tags">
+                        <span class="tag">Computer Vision</span>
+                        <span class="tag">Healthcare ML</span>
+                        <span class="tag">Classification</span>
+                        <span class="tag">TensorFlow</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Saanctity" target="_blank">GitHub →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">Taste of Wellbeing App</div>
+                <div class="project-body">
+                    <p>Wellness and recipe application inspired by Sadhguru's teachings. Integrates nutrition data, 
+                    mindful eating practices, and personalized recommendations for holistic health.</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Wellness Tech</span>
+                        <span class="tag">Full-Stack</span>
+                        <span class="tag">UX Design</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Saanctity" target="_blank">GitHub →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">Climate Tech Initiative (Coming Soon)</div>
+                <div class="project-body">
+                    <p>Building predictive models for renewable energy optimization and carbon footprint analysis. 
+                    Focused on making environmental data actionable for businesses and individuals.</p>
+                    <div class="project-tags">
+                        <span class="tag">Climate AI</span>
+                        <span class="tag">Energy Optimization</span>
+                        <span class="tag">Sustainability</span>
+                        <span class="tag">Impact</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Saanctity" target="_blank">Follow Progress →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>Technical Arsenal</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>AI/ML Core</h3>
+                <ul>
+                    <li>Machine Learning</li>
+                    <li>Deep Learning</li>
+                    <li>Computer Vision</li>
+                    <li>Natural Language Processing</li>
+                    <li>GenAI & LLMs</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Programming</h3>
+                <ul>
+                    <li>Python (Primary)</li>
+                    <li>JavaScript/TypeScript</li>
+                    <li>SQL</li>
+                    <li>C/C++</li>
+                    <li>Java</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>ML Frameworks</h3>
+                <ul>
+                    <li>TensorFlow/Keras</li>
+                    <li>PyTorch</li>
+                    <li>Scikit-learn</li>
+                    <li>Pandas/NumPy</li>
+                    <li>OpenCV</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Full-Stack Dev</h3>
+                <ul>
+                    <li>React.js</li>
+                    <li>Node.js</li>
+                    <li>HTML/CSS</li>
+                    <li>PostgreSQL/MySQL</li>
+                    <li>Git/GitHub</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Specialized Tools</h3>
+                <ul>
+                    <li>Qiskit (Quantum)</li>
+                    <li>Q# (Quantum)</li>
+                    <li>Tableau</li>
+                    <li>Google Analytics</li>
+                    <li>VS Code</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>AI Platforms</h3>
+                <ul>
+                    <li>OpenAI API</li>
+                    <li>ChatGPT/GPT-4</li>
+                    <li>Midjourney</li>
+                    <li>Google Colab</li>
+                    <li>Hugging Face</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Let's Build Something Meaningful</h2>
+        <p>Open to collaborations on climate tech, AI/ML projects, or conscious innovation initiatives.</p>
+        <div class="contact-links">
+            <a href="mailto:sagar1.7shukla@gmail.com" class="contact-link">
+                📧 Email
+            </a>
+            <a href="https://github.com/Saanctity" target="_blank" class="contact-link">
+                💻 GitHub
+            </a>
+            <a href="https://linkedin.com/in/sagar-shukla-3342aa34a" target="_blank" class="contact-link">
+                💼 LinkedIn
+            </a>
+        </div>
+        <p style="margin-top: 4rem; color: var(--text-secondary); font-size: 0.9rem;">
+            © 2025 Sagar Shukla | Built with consciousness and code
+        </p>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .about-card, .skill-category').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
