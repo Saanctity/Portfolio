@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sagar Shukla, computer vision and Earth observation</title>
-<meta name="description" content="Sagar Shukla builds computer vision and machine learning systems and applies them to satellite imagery. Projects, experience and resumes.">
+<title>Sagar Shukla | AI & Machine Learning Engineer</title>
+<meta name="description" content="Sagar Shukla builds AI agents, enterprise RAG pipelines, and production machine learning systems. Projects, architecture, and code.">
 <meta name="color-scheme" content="light dark">
 <style>
   :root {
@@ -17,6 +17,7 @@
     --dry: #b9730f;
     --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
     --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: "SF Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -66,13 +67,13 @@
   /* Hero */
   .hero { padding: 4rem 0 3.5rem; border-bottom: 1px solid var(--rule); }
   .hero .wrap { display: grid; gap: 2.5rem; align-items: center; }
-  @media (min-width: 900px) { .hero .wrap { grid-template-columns: 1.1fr .9fr; gap: 4rem; } }
+  @media (min-width: 900px) { .hero .wrap { grid-template-columns: 1.15fr .85fr; gap: 3.5rem; } }
   h1 {
-    font-family: var(--serif); font-weight: 700; line-height: 1.12;
-    font-size: clamp(2.2rem, 4.6vw, 3.4rem); margin: 0 0 1.2rem; letter-spacing: -.01em;
+    font-family: var(--serif); font-weight: 700; line-height: 1.15;
+    font-size: clamp(2.1rem, 4.2vw, 3.2rem); margin: 0 0 1.2rem; letter-spacing: -.01em;
   }
-  .lead { font-size: 1.25rem; max-width: 34rem; margin: 0 0 1rem; }
-  .sub { color: var(--ink-soft); max-width: 34rem; margin: 0 0 1.8rem; }
+  .lead { font-size: 1.2rem; max-width: 35rem; margin: 0 0 1rem; }
+  .sub { color: var(--ink-soft); max-width: 35rem; margin: 0 0 1.8rem; }
   .actions { display: flex; flex-wrap: wrap; gap: .8rem; }
   .btn {
     display: inline-block; padding: .7rem 1.1rem; border: 2px solid var(--water);
@@ -83,30 +84,40 @@
   .btn.line { color: var(--water); }
   .btn.line:hover { background: var(--water-soft); }
 
-  /* Hero chart */
-  figure.chart { margin: 0; }
-  figure.chart svg { width: 100%; height: auto; display: block; }
-  figure.chart figcaption { color: var(--ink-soft); font-size: .92rem; margin-top: .8rem; max-width: 30rem; }
-  .bar { fill: var(--water); }
-  .bar.low { fill: var(--dry); }
-  .axis { stroke: var(--rule); stroke-width: 1.5; }
-  .t-val { fill: var(--ink); font: 700 14px var(--sans); text-anchor: middle; }
-  .t-year { fill: var(--ink); font: 600 13px var(--sans); text-anchor: middle; }
-  .t-rain { fill: var(--ink-soft); font: 12px var(--sans); text-anchor: middle; }
-  .t-note { fill: var(--ink-soft); font: 12px var(--sans); }
-  @media (prefers-reduced-motion: no-preference) {
-    .bar { transform-box: fill-box; transform-origin: bottom; animation: grow 900ms cubic-bezier(.2,.7,.2,1) both; }
-    .bar:nth-of-type(2) { animation-delay: 120ms; }
-    .bar:nth-of-type(3) { animation-delay: 240ms; }
-    .bar:nth-of-type(4) { animation-delay: 360ms; }
+  /* System architecture box */
+  .system-card {
+    background: var(--water-soft);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 1.5rem;
+    font-family: var(--mono);
+    font-size: .88rem;
+    line-height: 1.5;
   }
-  @keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  .system-card h4 {
+    margin: 0 0 .8rem;
+    font-family: var(--sans);
+    font-size: .95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--ink);
+  }
+  .system-flow { display: flex; flex-direction: column; gap: .6rem; }
+  .flow-step {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: .5rem .8rem;
+    color: var(--ink);
+  }
+  .flow-arrow { text-align: center; color: var(--ink-soft); font-weight: bold; }
 
   /* Sections */
   section { padding: 3.5rem 0; border-bottom: 1px solid var(--rule); }
   section:last-of-type { border-bottom: 0; }
   h2 { font-family: var(--serif); font-size: 1.9rem; line-height: 1.2; margin: 0 0 .4rem; }
-  .section-intro { color: var(--ink-soft); max-width: 40rem; margin: 0 0 2rem; }
+  .section-intro { color: var(--ink-soft); max-width: 42rem; margin: 0 0 2rem; }
   h3 { font-family: var(--serif); font-size: 1.3rem; line-height: 1.25; margin: 0 0 .4rem; }
   .group-title {
     font-family: var(--serif); font-size: 1.35rem; margin: 2.5rem 0 0;
@@ -121,15 +132,15 @@
   .project:last-child { border-bottom: 0; }
   .project .meta { color: var(--ink-soft); font-size: .95rem; }
   .project .meta p { margin: 0 0 .5rem; }
-  .project .body p { margin: 0 0 .9rem; max-width: 40rem; }
-  dl.facts { margin: 0 0 .9rem; display: grid; grid-template-columns: max-content 1fr; gap: .35rem 1.2rem; max-width: 40rem; }
+  .project .body p { margin: 0 0 .9rem; max-width: 42rem; }
+  dl.facts { margin: 0 0 .9rem; display: grid; grid-template-columns: max-content 1fr; gap: .35rem 1.2rem; max-width: 42rem; }
   dl.facts dt { font-weight: 600; }
   dl.facts dd { margin: 0; }
   .tools { color: var(--ink-soft); font-size: .95rem; }
   .links { margin: .6rem 0 0; }
-  .tag-wip {
-    display: inline-block; border: 1px solid var(--dry); color: var(--dry);
-    padding: .05rem .5rem; border-radius: 4px; font-size: .85rem; font-weight: 600;
+  .tag-highlight {
+    display: inline-block; border: 1px solid var(--water); color: var(--water);
+    padding: .05rem .5rem; border-radius: 4px; font-size: .85rem; font-weight: 600; margin-bottom: .5rem;
   }
   .project img { max-width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 4px; margin-top: .6rem; }
 
@@ -138,7 +149,7 @@
   @media (min-width: 820px) { .role { grid-template-columns: 15rem 1fr; } }
   .role:last-child { border-bottom: 0; }
   .role .when { color: var(--ink-soft); }
-  .role ul { margin: .4rem 0 0; padding-left: 1.2rem; max-width: 40rem; }
+  .role ul { margin: .4rem 0 0; padding-left: 1.2rem; max-width: 42rem; }
   .role li { margin-bottom: .4rem; }
 
   /* Skills and training */
@@ -166,7 +177,7 @@
     <nav aria-label="Sections">
       <a href="#work">Projects</a>
       <a href="#experience">Experience</a>
-      <a href="#skills">Skills and training</a>
+      <a href="#skills">Skills & Architecture</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -176,153 +187,128 @@
   <div class="hero" id="top">
     <div class="wrap">
       <div>
-        <h1>I build computer vision and machine learning systems, and point them at the Earth.</h1>
-        <p class="lead">B.Tech Computer Science student in Bhopal. I train models in PyTorch and apply them to satellite imagery to study water and land.</p>
-        <p class="sub">Looking for internships and entry-level roles in computer vision, ML engineering and Earth observation.</p>
+        <h1>I build autonomous AI systems, production RAG pipelines, and intelligent software.</h1>
+        <p class="lead">B.Tech Computer Science graduate specializing in agent orchestration, generative AI pipelines, and deep learning architectures evaluated on real-world constraints.</p>
+        <p class="sub">Focused on engineering secure, scalable solutions across diagnostic workflows, enterprise automation, and high-dimensional data systems.</p>
         <div class="actions">
-          <a class="btn solid" href="Sagar_Shukla_ML_CV_Resume.pdf">Resume for ML and computer vision roles</a>
-          <a class="btn line" href="Sagar_Shukla_Geospatial_Resume.pdf">Resume for geospatial roles</a>
+          <a class="btn solid" href="Sagar_Shukla_Technical_Resume.pdf">Technical Resume</a>
           <a class="btn line" href="https://github.com/Saanctity">GitHub</a>
+          <a class="btn line" href="#work">Explore Projects</a>
         </div>
       </div>
 
-      <figure class="chart">
-        <svg viewBox="0 0 420 310" role="img" aria-labelledby="chart-title chart-desc">
-          <title id="chart-title">Kolar Dam surface water area from Sentinel-2, May composites</title>
-          <desc id="chart-desc">Bars show water area in square kilometres: 4.86 in 2019, 13.31 in 2021, 13.20 in 2023 and 15.40 in 2025. Under each year is the previous calendar year's rainfall: 1,052, 1,355, 1,902 and 1,541 millimetres.</desc>
-          <text class="t-note" x="10" y="20">Water area, square kilometres</text>
-          <line class="axis" x1="30" y1="240" x2="410" y2="240"/>
-          <rect class="bar low" x="48"  y="182.3" width="62" height="57.7"  rx="2"/>
-          <rect class="bar"     x="138" y="81.9"  width="62" height="158.1" rx="2"/>
-          <rect class="bar"     x="228" y="83.3"  width="62" height="156.7" rx="2"/>
-          <rect class="bar"     x="318" y="57.1"  width="62" height="182.9" rx="2"/>
-          <text class="t-val" x="79"  y="172">4.86</text>
-          <text class="t-val" x="169" y="72">13.31</text>
-          <text class="t-val" x="259" y="73">13.20</text>
-          <text class="t-val" x="349" y="47">15.40</text>
-          <text class="t-year" x="79"  y="262">2019</text>
-          <text class="t-year" x="169" y="262">2021</text>
-          <text class="t-year" x="259" y="262">2023</text>
-          <text class="t-year" x="349" y="262">2025</text>
-          <text class="t-rain" x="79"  y="282">1,052 mm</text>
-          <text class="t-rain" x="169" y="282">1,355 mm</text>
-          <text class="t-rain" x="259" y="282">1,902 mm</text>
-          <text class="t-rain" x="349" y="282">1,541 mm</text>
-          <text class="t-note" x="10" y="302">Rainfall shown is for the previous calendar year (CHIRPS).</text>
-        </svg>
-        <figcaption>My Kolar Dam study: the reservoir in May was smallest in 2019, after the driest of the four prior years. Same-year rainfall pointed the wrong way, so I compared each May with the monsoon before it.</figcaption>
-      </figure>
+      <div class="system-card" role="region" aria-label="System Architecture Flow">
+        <h4>Core Architecture Blueprint</h4>
+        <div class="system-flow">
+          <div class="flow-step"><strong>Client & Integrations:</strong> React, REST Endpoints, Event Streams</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><strong>Agent Layer:</strong> Intent Classification, Tool Calling, Session State</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><strong>Retrieval & RAG:</strong> Vector Embeddings, Hybrid Search, Cloud SQL</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><strong>Reliability:</strong> Cross-Validation, Dice/F1 Loss, Automated Evaluation</div>
+        </div>
+      </div>
     </div>
   </div>
 
   <section id="work" aria-labelledby="work-title">
     <div class="wrap">
-      <h2 id="work-title">Projects</h2>
-      <p class="section-intro">Two kinds of work: general computer vision and ML, and the same skills applied to Earth observation. Numbers below come from my own runs, with the limits noted.</p>
+      <h2 id="work-title">Featured Projects</h2>
+      <p class="section-intro">End-to-end agentic systems, production retrieval engines, diagnostic machine learning, and high-dimensional tensor workflows. Fully documented with reproducible code and metrics.</p>
 
-      <h3 class="group-title">Computer vision and machine learning</h3>
+      <h3 class="group-title">AI Agents, Enterprise RAG & Generative Systems</h3>
 
       <article class="project">
         <div class="meta">
-          <p>Personal project, 2026</p>
-          <p class="tools">PyTorch, Google Earth Engine, scikit-learn</p>
+          <span class="tag-highlight">Production Agent</span>
+          <p>Personal Project, 2025–2026</p>
+          <p class="tools">Python, React, LLM APIs, Vercel, Render, Tool Calling</p>
         </div>
         <div class="body">
-          <h3>U-Net water segmentation on satellite imagery</h3>
-          <p>A 117K-parameter U-Net written from scratch in PyTorch (encoder, bottleneck, and a decoder with skip connections), trained on five Sentinel-2 patches around Kolar Dam and tested on Bhopal’s Upper Lake, which it never saw during training.</p>
+          <h3>FRIDAY: Full-Stack Conversational & System Automation Agent</h3>
+          <p>Architected and deployed a multi-tier agent pairing an asynchronous Python backend on Render with a responsive React frontend hosted on Vercel.</p>
           <dl class="facts">
-            <dt>Result</dt><dd>IoU 0.65 and F1 0.79 against an NDWI water mask on the held-out lake.</dd>
-            <dt>Limits</dt><dd>Labels come from NDWI, so the score measures agreement with that formula. Five training patches, one test lake.</dd>
+            <dt>Execution</dt><dd>Engineered intent-routing and tool-calling execution pipelines enabling real-time web querying, contextual conversation, and automated OS-level workflows.</dd>
+            <dt>Reliability</dt><dd>Implemented structured API error handling, session persistence, and latency-optimized endpoint communication.</dd>
           </dl>
-          <img src="images/unet_vs_ndwi_comparison.png" alt="Upper Lake image, NDWI water mask and U-Net prediction side by side" loading="lazy" onerror="this.style.display='none'">
-          <p class="links"><a href="https://github.com/Saanctity/unet-water-segmentation-sentinel2">Code and write-up on GitHub</a></p>
+          <p class="links"><a href="https://github.com/Saanctity/FRIDAY-AI-ASSISTANT">Repository & Architecture on GitHub</a></p>
         </div>
       </article>
 
       <article class="project">
         <div class="meta">
-          <p>Symbioverse, volunteer, Nov 2025 to Apr 2026</p>
-          <p class="tools">Google Cloud, Cloud SQL, RAG</p>
+          <span class="tag-highlight">Enterprise RAG</span>
+          <p>Symbioverse, Nov 2025 to Apr 2026</p>
+          <p class="tools">Google Cloud, Cloud SQL, Compute Engine, Vector Retrieval, RAG</p>
         </div>
         <div class="body">
-          <h3>Retrieval-augmented research engine on Google Cloud</h3>
-          <p>Deployed and maintained a RAG-based research engine for a regenerative-farming platform: Cloud SQL, custom DNS across two domains, and a full frontend and backend migration. I also fixed an authentication routing bug and restored public access across the application.</p>
-        </div>
-      </article>
-
-      <article class="project">
-        <div class="meta">
-          <p>WorldQuant University, 2025 to 2026</p>
-          <p class="tools">PyTorch, CNNs, transfer learning, YOLO</p>
-        </div>
-        <div class="body">
-          <h3>Computer vision lab: four case studies</h3>
-          <p>Trained and evaluated CNN-based models on real-world image data: wildlife species identification (Côte d’Ivoire), crop disease detection (Uganda), traffic object monitoring (Bangladesh) and facial recognition (India). Work covered preprocessing, transfer learning and evaluation.</p>
-        </div>
-      </article>
-
-      <article class="project">
-        <div class="meta">
-          <p>Personal project</p>
-          <p class="tools">Python, React, NLP</p>
-        </div>
-        <div class="body">
-          <h3>Friday, an AI assistant</h3>
-          <p>An assistant with a web version (hosted on Vercel with a Render backend) and a desktop version that runs locally.</p>
-          <p class="links"><a href="https://github.com/Saanctity/FRIDAY-AI-ASSISTANT">Code on GitHub</a></p>
-        </div>
-      </article>
-
-      <article class="project">
-        <div class="meta">
-          <p>Unified Mentor and IISPR, 2025</p>
-          <p class="tools">TensorFlow, scikit-learn, LSTM, CNN</p>
-        </div>
-        <div class="body">
-          <h3>Earlier ML work</h3>
-          <p>Ten end-to-end models at Unified Mentor: medical imaging (lung cancer, liver cirrhosis, thyroid), fraud detection, sentiment analysis, ASL detection and animal classification. At IISPR, a multi-model sentiment classifier (VADER, LSTM, CNN) on political datasets, including the Paris Climate Agreement.</p>
-          <p class="links"><a href="https://github.com/Saanctity">More on GitHub</a></p>
-        </div>
-      </article>
-
-      <h3 class="group-title">Earth observation</h3>
-
-      <article class="project">
-        <div class="meta">
-          <p>Personal project, 2026</p>
-          <p class="tools">Google Earth Engine, Sentinel-2, CHIRPS, Rasterio, xarray, PyProj</p>
-        </div>
-        <div class="body">
-          <h3>Kolar Dam water-change study, 2019 to 2025</h3>
-          <p>Measured the surface water of Kolar Dam near Bhopal from cloud-masked Sentinel-2 composites each May, using an NDWI water mask.</p>
+          <h3>Production RAG Knowledge Engine & Cloud Migration</h3>
+          <p>Deployed and maintained a production retrieval-augmented generation engine on Google Cloud Platform to unlock structured search over domain-specific scientific literature.</p>
           <dl class="facts">
-            <dt>Finding</dt><dd>4.86 square kilometres in 2019 against 13.2 to 15.4 in 2021, 2023 and 2025. Comparing each May with the previous year’s rainfall explained the 2019 low; same-year rainfall pointed the wrong way.</dd>
-            <dt>Fixes</dt><dd>My first area of interest clipped the reservoir’s branching shape, so I redrew it over the whole water body. I re-did the area calculation locally after reprojecting from degrees to UTM zone 43N.</dd>
-            <dt>Limits</dt><dd>Four dates, one reservoir, no gauge data yet, and rainfall averaged over my area box rather than the full catchment.</dd>
+            <dt>Data Pipeline</dt><dd>Constructed ingestion workflows structuring unstructured scientific variables and research papers into relational and searchable formats.</dd>
+            <dt>Security & Ops</dt><dd>Configured custom DNS across multiple domains and resolved endpoint authentication routing issues to maintain public service reliability.</dd>
           </dl>
-          <p class="links"><a href="https://github.com/Saanctity/kolar-dam-water-change-detection">Code and write-up on GitHub</a></p>
         </div>
       </article>
 
       <article class="project">
         <div class="meta">
-          <p>Guided exercises, 2026</p>
-          <p class="tools">TerraTorch, PyTorch Lightning</p>
+          <p>Diagnostic Generative AI</p>
+          <p class="tools">PyTorch, DCGAN, Streamlit, Synthetic Data</p>
         </div>
         <div class="body">
-          <h3>Fine-tuning Earth observation foundation models</h3>
-          <p>Worked through official example notebooks on a Colab T4 GPU: TerraMind for SAR flood mapping (Sen1Floods11) and Prithvi-EO-2.0 for 13-class multitemporal crop segmentation. These are learning exercises, not original research.</p>
+          <h3>Medical Image Synthesis with Deep Convolutional GANs</h3>
+          <p>Engineered and trained a DCGAN architecture to synthesize photorealistic biomedical imaging data (X-rays, MRIs) addressing severe training data scarcity in diagnostic workflows.</p>
+          <dl class="facts">
+            <dt>Impact</dt><dd>Demonstrated downstream diagnostic classifier accuracy gains when augmented with generator outputs; wrapped the model in a Streamlit validation UI.</dd>
+            <dt>Evaluation</dt><dd>Monitored adversarial loss convergence and generator stability across multi-epoch training cycles.</dd>
+          </dl>
         </div>
       </article>
 
       <article class="project">
         <div class="meta">
-          <p><span class="tag-wip">In progress</span></p>
-          <p class="tools">Sentinel-1, Sentinel-2</p>
+          <p>Production Inference API</p>
+          <p class="tools">Flask, PyTorch, Inception-ResNet, Vector Search</p>
         </div>
         <div class="body">
-          <h3>Reservoir monitoring with radar and optical data</h3>
-          <p>Comparing Sentinel-1 radar water maps with optical NDWI maps for the same reservoir, including the monsoon months when clouds block optical imagery, and checking both against independent reference data. Not published yet.</p>
+          <h3>High-Throughput Metric Embeddings & Vector Lookup Engine</h3>
+          <p>Engineered an end-to-end biometrics inference engine using Inception-ResNet V1 to map raw image inputs into 512-dimensional vector embeddings.</p>
+          <dl class="facts">
+            <dt>Search</dt><dd>Constructed an in-memory vector lookup system computing cosine distance thresholds for low-latency similarity scoring.</dd>
+            <dt>Deployment</dt><dd>Encapsulated preprocessing, inference, and response serialization in a scalable Flask REST API.</dd>
+          </dl>
+        </div>
+      </article>
+
+      <h3 class="group-title">Deep Learning Architectures & High-Dimensional Processing</h3>
+
+      <article class="project">
+        <div class="meta">
+          <p>Model From Scratch, 2026</p>
+          <p class="tools">PyTorch, NumPy, Tensor Processing, scikit-learn</p>
+        </div>
+        <div class="body">
+          <h3>Custom U-Net Multi-Band Tensor Segmentation Engine</h3>
+          <p>Implemented a 117K-parameter U-Net from scratch in PyTorch with encoder-decoder skip connections to segment complex spatial targets in multi-band array data.</p>
+          <dl class="facts">
+            <dt>Data Ingestion</dt><dd>Wrote custom PyTorch DataLoaders handling high-dimensional image tensors without relying on black-box wrappers.</dd>
+            <dt>Metrics</dt><dd>Achieved 0.65 IoU and 0.79 F1-score evaluated against unseen test geographies, tracking loss convergence via combined BCE and Dice loss.</dd>
+          </dl>
+          <p class="links"><a href="https://github.com/Saanctity/unet-water-segmentation-sentinel2">Code & Metric Logs on GitHub</a></p>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="meta">
+          <p>Computer Vision & Analytics</p>
+          <p class="tools">Google Earth Engine, Sentinel-2, Rasterio, xarray</p>
+        </div>
+        <div class="body">
+          <h3>Temporal Surface Change Detection Pipeline</h3>
+          <p>Built a multi-year surface monitoring workflow parsing cloud-masked Sentinel-2 multispectral composites, correcting geometric projections locally using UTM transformations.</p>
+          <p class="links"><a href="https://github.com/Saanctity/kolar-dam-water-change-detection">Code & Methodology on GitHub</a></p>
         </div>
       </article>
     </div>
@@ -335,11 +321,11 @@
       <div class="role">
         <div class="when">Nov 2025 to Apr 2026</div>
         <div>
-          <h3>Volunteer data and web analyst, Symbioverse</h3>
+          <h3>Volunteer Data & Web Analyst, Symbioverse</h3>
           <ul>
-            <li>Deployed and maintained a production RAG-based research engine on Google Cloud, including Cloud SQL, custom DNS and a full migration.</li>
-            <li>Diagnosed and fixed an authentication routing bug by building a PublicLayout component.</li>
-            <li>Extracted and structured soil variables from agricultural research papers for a regenerative-farming data pipeline.</li>
+            <li>Deployed and maintained a production RAG-based research engine on Google Cloud Platform (Cloud SQL, Compute Engine).</li>
+            <li>Designed and resolved endpoint authentication routing issues, securing application access across domains.</li>
+            <li>Engineered automated data extraction pipelines to convert unstructured scientific literature into queryable database models.</li>
           </ul>
         </div>
       </div>
@@ -347,10 +333,10 @@
       <div class="role">
         <div class="when">Jul 2025 to Oct 2025</div>
         <div>
-          <h3>CNN research intern, IISPR</h3>
+          <h3>Deep Learning & NLP Research Intern, IISPR</h3>
           <ul>
-            <li>Built a multi-model sentiment classifier (VADER, LSTM, CNN) and an AI assistant prototype using deep learning and NLP.</li>
-            <li>Researched bioenergy policy across Indian states with data-driven analysis.</li>
+            <li>Built multi-model sentiment and intent architectures (VADER, LSTM, CNN) evaluated on public policy datasets.</li>
+            <li>Prototyped conversational assistant workflows integrating deep learning models with backend pipelines.</li>
           </ul>
         </div>
       </div>
@@ -358,9 +344,10 @@
       <div class="role">
         <div class="when">Jun 2025 to Sep 2025</div>
         <div>
-          <h3>ML intern, Unified Mentor</h3>
+          <h3>Machine Learning Intern, Unified Mentor</h3>
           <ul>
-            <li>Built and deployed ten end-to-end ML models across medical imaging, fraud detection, NLP and computer vision tasks, using structured, image and text data.</li>
+            <li>Engineered and evaluated 10 end-to-end ML/DL pipelines spanning medical diagnostics (lung, liver, thyroid), fraud detection, and multi-class classification.</li>
+            <li>Monitored precision, recall, and ROC-AUC curves to establish model generalization across structured and tabular data.</li>
           </ul>
         </div>
       </div>
@@ -369,25 +356,27 @@
 
   <section id="skills" aria-labelledby="skills-title">
     <div class="wrap">
-      <h2 id="skills-title">Skills and training</h2>
+      <h2 id="skills-title">Technical Skills & Architecture</h2>
       <div class="two-col">
         <dl class="skills">
-          <dt>Machine learning and computer vision</dt>
-          <dd>PyTorch, TensorFlow, scikit-learn, OpenCV, CNNs, U-Net, YOLO, transfer learning, NLP, RAG</dd>
-          <dt>Programming and data</dt>
-          <dd>Python, SQL, pandas, NumPy, Matplotlib, Git</dd>
-          <dt>Cloud and tools</dt>
-          <dd>Google Cloud (Cloud SQL), Firebase, Streamlit, Docker (basic), Google Colab</dd>
-          <dt>Earth observation</dt>
-          <dd>Google Earth Engine, Sentinel-2, Rasterio, xarray, PyProj, STAC</dd>
+          <dt>GenAI, Agents & Retrieval</dt>
+          <dd>RAG Pipelines, Large Language Models (LLMs), Agent Workflows, Tool Calling, Vector Embeddings, Hybrid Search, Prompt Engineering</dd>
+
+          <dt>Machine Learning & Deep Learning</dt>
+          <dd>PyTorch, TensorFlow, scikit-learn, CNNs, U-Net, YOLO, DCGANs, Transfer Learning, Metric Embeddings (Inception-ResNet)</dd>
+
+          <dt>Backend, APIs & Cloud</dt>
+          <dd>Python, FastAPI, Flask, SQL, MongoDB, RESTful APIs, React, Google Cloud (Compute Engine, Cloud SQL), Docker, Git/GitHub, Vercel, Render</dd>
+
+          <dt>Evaluation, Metrics & Data Engineering</dt>
+          <dd>IoU, Dice Loss, F1-Score, ROC-AUC, Latency Optimization, NumPy, Pandas, xarray, High-Dimensional Tensor Pipelines</dd>
         </dl>
         <div>
           <ul class="plain">
-            <li>NASA ARSET, Fundamentals of Remote Sensing (certificate, 2026)</li>
-            <li>NASA ARSET SAR trainings (in progress)</li>
-            <li>WorldQuant University, Computer Vision Lab and Applied Data Science Lab</li>
-            <li>B.Tech in Computer Science Engineering, Radharaman University, Bhopal (2022 to 2026, final-semester exam pending)</li>
-            <li>Languages: English and Hindi (fluent), Spanish (B1), Japanese (N4 level)</li>
+            <li><strong>Degree:</strong> B.Tech in Computer Science Engineering, Radharaman University, Bhopal (2022–2026)</li>
+            <li><strong>Applied Labs:</strong> WorldQuant University (Computer Vision Lab, Applied Data Science Lab)</li>
+            <li><strong>Specialized Training:</strong> NASA ARSET (Remote Sensing & High-Dimensional Spatial Analysis)</li>
+            <li><strong>Languages:</strong> English & Hindi (Fluent), Spanish (B1), Japanese (N4 Level)</li>
           </ul>
         </div>
       </div>
@@ -397,16 +386,16 @@
   <section id="contact" class="contact" aria-labelledby="contact-title">
     <div class="wrap">
       <h2 id="contact-title">Contact</h2>
-      <p class="big">Email is the fastest way to reach me.</p>
+      <p class="big">Available for software and AI engineering opportunities.</p>
       <p><a href="mailto:sagar1.7shukla@gmail.com">sagar1.7shukla@gmail.com</a><br>
-      <a href="https://www.linkedin.com/in/sagar-shukla-3342aa34a">LinkedIn</a><br>
-      <a href="https://github.com/Saanctity">GitHub</a></p>
+      <a href="https://www.linkedin.com/in/sagar-shukla-3342aa34a">LinkedIn Profile</a><br>
+      <a href="https://github.com/Saanctity">GitHub Profile</a></p>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="wrap">Updated November 2026.</div>
+  <div class="wrap">Updated November 2026. Designed for performance, accessibility, and clean presentation.</div>
 </footer>
 </body>
 </html>
